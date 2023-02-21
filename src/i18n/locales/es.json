@@ -1,0 +1,54 @@
+{
+    "btn": {
+        "login": "Iniciar sesión",
+        "save": "Guardar",
+        "no": "no",
+        "yes": "si",
+        "load": "cargar",
+        "cancel": "cancelar",
+        "back": "volver",
+        "update": "actualizar",
+        "send": "Enviar",
+        "profile": "Perfil",
+        "logout": "Cerrar Session",
+        "setting": "Configuración",
+        "uploadNewPhoto": "Cambiar Foto",
+        "reset": "Resetear"
+    },
+
+    "input": {
+        "username": "Usuario",
+        "password": "Contraseña",
+        "remember": "Recordarme",
+        "email": "Correo Electronico",
+        "name": "Nombre",
+        "lastName": "Apellido",
+        "active": "Activo",
+        "status": "Estado",
+        "inactive": "Inactivo",
+        "pending": "Pendiente",
+        "block": "Bloqueado"
+    },
+
+    "alert": {
+        "inputRequired": "Este campo es Requerido",
+        "userOrPass": "Usuario o Contraseña incorrectos"
+    },
+
+    "login": {
+        "welcome": "Bienvenido al Tablero",
+        "remember": "Recordarme",
+        "adventure": "Inicie sesión en su cuenta y comience la aventura",
+        "forgotPassword": "¿Olvidó su contraseña?"
+    },
+
+    "err": {
+        "pageNotFound": "Página no encontrada",
+        "pageErr": "No pudimos encontrar la página que estás buscando"
+    },
+
+    "dash": {
+        "dashboard": "Tablero",
+        "registerInfo": "Registrar"
+    }
+}

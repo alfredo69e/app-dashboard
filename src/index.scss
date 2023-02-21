@@ -1,0 +1,110 @@
+html,
+body {
+  min-height: 100%;
+  font-family: 'Roboto', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+}
+
+.cardLogin {
+  width: calc( 50vh - 80px );
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 40px;
+}
+
+.btnDrawerIsActiveLight {
+  display: flex;
+  text-decoration: none;
+  background-image: linear-gradient(98deg, #C6A7FE, #9155FD 94%);
+  padding: 12px;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  border-radius: 0px 50px 50px 0px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px;
+  color: #ffffff;
+  animation-name: fadeInLeft;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+
+  .span {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.btnDrawerIsNotActiveLight {
+  display: flex;
+  text-decoration: none;
+  padding: 12px;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  border-radius: 0px 50px 50px 0px;
+  cursor: pointer;
+  color: rgba(58, 53, 65, 0.87);
+  opacity: 0.8;
+
+  .span {
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-left: 10px;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.btnDrawerIsActiveDark {
+  display: flex;
+  text-decoration: none;
+  background-image: linear-gradient(98deg, #C6A7FE, #9155FD 94%);
+  padding: 12px;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  border-radius: 0px 50px 50px 0px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 10px;
+  color: #ffffff;
+  animation-name: fadeInLeft;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+
+  .span {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.btnDrawerIsNotActiveDark {
+  display: flex;
+  text-decoration: none;
+  padding: 12px;
+  padding-left: 20px;
+  margin-top: 20px;
+  margin-right: 10px;
+  border-radius: 0px 50px 50px 0px;
+  cursor: pointer;
+  color: rgba(231, 227, 252, 0.87);
+
+  .span {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+

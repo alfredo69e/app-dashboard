@@ -1,0 +1,61 @@
+{
+    "btn": {
+        "login": "login",
+        "save": "save",
+        "no": "no",
+        "yes": "yes",
+        "load": "load",
+        "cancel": "cancel",
+        "back": "back",
+        "update": "update",
+        "send": "Send",
+        "profile": "Profile",
+        "logout": "Logout",
+        "setting": "Setting",
+        "uploadNewPhoto": "Upload New Photo",
+        "reset": "Reset"
+    },
+
+    "input": {
+        "username": "Username",
+        "password": "Password",
+        "remember": "Remember Me",
+        "email": "email",
+        "name": "First Name",
+        "lastName": "Last Name",
+        "active": "Active",
+        "status": "Status",
+        "inactive": "Inactive",
+        "pending": "Pendig",
+        "block": "Block"
+    },
+
+    "alert": {
+        "inputRequired": "This field is required",
+        "userOrPass": "Wrong username or password"
+    },
+
+    "login": {
+        "welcome": "Welcome to Dashboard",
+        "remember": "Remember Me",
+        "adventure": "Please sign-in to your account and start the adventure",
+        "forgotPassword": "Forgot Password?"
+    },
+
+    "err": {
+        "pageNotFound": "Page not Found",
+        "pageErr": "We couldn't find the page you are looking for"
+    },
+
+    "dash": {
+        "dashboard": "Dashboard",
+        "registerInfo": "Register"
+    },
+
+    "headers": {
+        "account": "Account",
+        "security": "Security",
+        "info": "Info"
+    }
+
+}
