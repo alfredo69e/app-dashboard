@@ -1,5 +1,5 @@
-import { AppRegistration, HouseOutlined } from '@mui/icons-material';
-import { Box, Divider, Grid, SwipeableDrawer, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { BusinessCenterOutlined, HouseOutlined, ListAltOutlined, PermIdentityOutlined } from '@mui/icons-material';
+import { Box, Grid, SwipeableDrawer, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 import { PaletteTypeEnum, RootState, useAppSelector } from '../../../store';
@@ -41,10 +41,10 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
     } 
 
     if( mode === PaletteTypeEnum.light ) {
-      return 'animate__animated animate__fadeIn btnDrawerIsNotActiveLight'
+      return 'btnDrawerIsNotActiveLight'
     }
 
-    return 'animate__animated animate__fadeIn btnDrawerIsNotActiveDark'
+    return 'btnDrawerIsNotActiveDark'
   }
   
   const validateRoles = (): boolean => {
@@ -112,6 +112,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
                 }  }
                 className={ ({ isActive }) => isActiveDrawer( isActive ) }
                 to={'/'}
+                style={{ marginTop: '30px' }}
                 > {
                   
                 }
@@ -135,7 +136,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
                 className={ ({ isActive }) => isActiveDrawer( isActive ) }
                 to={`${RouterEnum.registerUser}`}
                 >  
-                  <AppRegistration className='icon' />
+                  <PermIdentityOutlined className='icon' />
                   <Typography className='span' > { t('dash.registerUsers') } </Typography>
                 </NavLink> 
 
@@ -146,7 +147,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
                 className={ ({ isActive }) => isActiveDrawer( isActive ) }
                 to={`${RouterEnum.listUsers}`}
                 >  
-                  <AppRegistration className='icon' />
+                  <ListAltOutlined className='icon' />
                   <Typography className='span' > { t('dash.listUsers') } </Typography>
                 </NavLink> 
               </>
@@ -162,7 +163,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
                 className={ ({ isActive }) => isActiveDrawer( isActive ) }
                 to={`${ RouterEnum.briefcase }`}
                 >  
-                  <AppRegistration className='icon' />
+                  <BusinessCenterOutlined className='icon' />
                   <Typography className='span' > { t('dash.briefcase') } </Typography>
               </NavLink>
             </Grid>
