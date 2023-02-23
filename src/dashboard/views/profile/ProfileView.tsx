@@ -1,6 +1,6 @@
 
 
-import { Card, Grid, SvgIconTypeMap } from '@mui/material';
+import { Card, Grid, SvgIconTypeMap, Divider } from '@mui/material';
 import { HeaderCard } from './../../../components';
 import { cardStyle } from './../../../styles';
 import { AccountView, SecurityView } from './';
@@ -18,11 +18,11 @@ interface headerNames {
 
 const viewHeader: headerNames = {
   account: {
-    icon: <PersonOutlineOutlined />,
+    icon: <PersonOutlineOutlined fontSize={ 'large' }/>,
     title: 'headers.account'
   },
   security: {
-    icon: <LockOpenOutlined />,
+    icon: <LockOpenOutlined fontSize={ 'large' } />,
     title: 'headers.security'
   },
 
@@ -84,6 +84,8 @@ export const ProfileView = () => {
               
               }
           </Grid>
+
+          <Divider  />
 
          
           { views() }

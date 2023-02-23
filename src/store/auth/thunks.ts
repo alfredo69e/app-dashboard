@@ -6,7 +6,6 @@ import { AxiosError } from 'axios';
 import { resetErrMsg, startErrMsg } from './../errMessages';
 import { localStorageSetToken, localStorageRemoveToken } from './../../helper';
 import { resetMsg, startMsg } from './../messages';
-import moment from 'moment';
 
 //! getState: () => RootState
 
@@ -28,11 +27,7 @@ export const startLogin = ( username: string, password: string ) => {
 
         } catch ( error : any ) {
 
-            const err : AxiosError = error;
-
-            const { status, name, message }: any = err.response?.data;
-
-            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            _handlerError( dispatch, error );
 
             dispatch( startLogout() );
             
@@ -101,13 +96,7 @@ export const startChangeAvatar = ( files: FileList ) => {
             
         } catch ( error : any ) {
 
-            console.log( error );
-
-            const err : AxiosError = error;
-
-            const { status, name, message }: any = err.response?.data;
-
-            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            _handlerError( dispatch, error );
             
             
         } finally {
@@ -135,13 +124,7 @@ export const startResetAvatar = () => {
    
         } catch ( error: any ) {
 
-            console.log( error );
-
-            const err : AxiosError = error;
-
-            const { status, name, message }: any = err.response?.data;
-
-            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            _handlerError( dispatch, error );
             
             
         } finally {
@@ -170,17 +153,43 @@ export const startUpdateUser = ( user: authState ) => {
    
         } catch ( error: any ) {
 
-            console.log( error );
-
-            const err : AxiosError = error;
-
-            const { status, name, message }: any = err.response?.data;
-
-            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            _handlerError( dispatch, error );
             
             
         } finally {
             dispatch( desactiveLoading() );
         }
     }
+}
+
+export const startChangePass = (oldPass: string, newPass: string) => {
+    return async( dispatch: AppDispatch ) => {
+        dispatch( activeLoading() );
+        dispatch( resetErrMsg() );
+        dispatch( resetMsg() );
+
+        try {
+
+            await dashboardApi.post(`/users/changePass`, { oldPass, newPass });
+
+            dispatch( startMsg( '' ) );
+            
+        } catch (error: any) {
+
+            _handlerError( dispatch, error );
+            
+        } finally {
+            dispatch( desactiveLoading() );
+        }
+    }
+}
+
+const _handlerError = ( dispatch: AppDispatch, error: any, messageValidate: boolean = false ) => {
+    console.log( error );
+
+    const err : AxiosError = error;
+
+    const { status, name, message }: any = err.response?.data;
+
+    dispatch( startErrMsg( { status: status ?? 0, name, message: `${ messageValidate ? message : '' }`  } ) );
 }

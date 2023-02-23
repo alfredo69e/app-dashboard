@@ -5,7 +5,8 @@ import { Alert, Box, Button, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from './../../../hooks';
 import { btnOutLineStyle, btnStyle } from './../../../styles';
-import { resetMessage, RootState, startChangeAvatar, startResetAvatar, useAppDispatch, useAppSelector, resetErrMessage } from '../../../store';
+import { startChangeAvatar, startResetAvatar, useAppDispatch } from '../../../store';
+import { AlertDanger, AlertSuccess } from './../../components';
 
 
 export const ChangeAvatar = () => {
@@ -14,8 +15,7 @@ export const ChangeAvatar = () => {
     const { avatar, name } = useAuth();
     const fileInputRef = useRef<HTMLInputElement>(null);
     const dispatch = useAppDispatch();
-    const { isActive } = useAppSelector((state: RootState) => state.errMessage );
-    const { isMessage } = useAppSelector((state: RootState) => state.message );
+    
 
     const onFileInputChange = ( { target: { files } } : ChangeEvent<HTMLInputElement> ) => {
         if ( files?.length === 0 ) return;
@@ -27,7 +27,7 @@ export const ChangeAvatar = () => {
     }
 
   return (
-        <Grid container mt={2} ml={2} mb={4} 
+        <Grid container mt={4} ml={2} mr={2} 
         sx={{
             display: 'inline-flex',
             flexWrap: 'wrap',
@@ -52,7 +52,8 @@ export const ChangeAvatar = () => {
                     cursor: 'pointer',
                     transition: '0.3s',
                     objectFit: 'contain',
-                    ':hover': {
+                    ml: 2,
+                    '&:hover': {
                       scale: 2,
                       transform: 'translateY(-0.50em);'
                     }
@@ -92,35 +93,10 @@ export const ChangeAvatar = () => {
                   <Typography sx={{ fontSize: '1.2em' }} >{ t( 'btn.reset' ) }</Typography> 
                 </Button>
 
-                { isActive && 
-                 <Alert 
-                 className='animate__animated animate__zoomIn'
-                 onClose={() => dispatch( resetErrMessage() ) }
-                 severity="error"
-                    sx={{ 
-                      width: '100%',
-                      textAlign: 'center',     
-                      mt: 4
-                   }}
-                  >
-                    <Typography >{ t( 'alert.noUpdate' ) }</Typography> 
-                  </Alert>
-                }
+              <AlertDanger  />
 
-                { isMessage && 
-                 <Alert 
-                 className='animate__animated animate__zoomIn'
-                 onClose={() => dispatch( resetMessage() ) }
-                 severity="success"
-                    sx={{ 
-                      width: '100%',
-                      textAlign: 'center',     
-                      mt: 4
-                   }}
-                  >
-                    <Typography >{ t( 'alert.updateSuccess' ) }</Typography> 
-                  </Alert>
-                }
+              <AlertSuccess />
+                
             </Grid>
   )
 }

@@ -4,6 +4,8 @@ import { btnStyle, inputStyle } from './../../../styles';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { startChangePass, startErrMsg, useAppDispatch } from './../../../store';
+import { AlertDanger, AlertSuccess } from './../../components';
 
 interface inputs {
   oldPass: string;
@@ -21,13 +23,13 @@ export const SecurityView = () => {
 
   const { t } = useTranslation();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<inputs>(); 
+  const dispatch = useAppDispatch();
+
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm<inputs>(); 
 
   const [passBlock, setPassBlock] = useState(viewsPass);
 
-  const onSubmit: SubmitHandler<inputs> = ( data ) => {
-    
-  };
+ 
 
   const handleClickShowPassword = ( value: number ) => {
     switch ( value ) {
@@ -55,20 +57,36 @@ export const SecurityView = () => {
     event.preventDefault();
   };
 
+  const onSubmit: SubmitHandler<inputs> = ( data ) => {
+    const { oldPass, newPass, repPass } = data;
+
+    if ( newPass !== repPass  ) {
+      dispatch( startErrMsg({ name: '', status: 0, message: `${t('alert.passwordNotSame')}` } ) );
+      return;
+    }
+    dispatch( startChangePass( oldPass, newPass ) );
+    setValue('oldPass', '');
+    setValue('newPass', '');
+    setValue('repPass', '');
+
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
 
-    <Grid  container mt={4} mb={4} spacing={2} p={2} >    
+    <Grid container pb={4}>    
+
+      <Grid container mt={4} spacing={2} pl={2} pr={2} > 
 
        <Grid item lg={ 6 } md={6} xs={ 12 }>
 
-       <Grid item >
+    
         <TextField 
                 type={ passBlock.oldPass ? 'text' : 'password' }
                 fullWidth 
                 size='medium'
-                placeholder={ t('input.password')!  }
-                label={  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'input.password' ) }</Typography> }
+                placeholder={ t('input.oldPass')!  }
+                label={  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'input.oldPass' ) }</Typography> }
                 sx={[
                   {
                     mb: 2
@@ -94,15 +112,13 @@ export const SecurityView = () => {
                 }}
               
                 />
-        </Grid>
-
-        <Grid item>
+       
           <TextField 
                 type={ passBlock.newPass ? 'text' : 'password' }
                 fullWidth 
                 size='medium'
-                placeholder={ t('input.password')!  }
-                label={  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'input.password' ) }</Typography> }
+                placeholder={ t('input.newPass')!  }
+                label={  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'input.newPass' ) }</Typography> }
                 sx={[
                   {
                     mb: 2
@@ -129,15 +145,12 @@ export const SecurityView = () => {
               
                 />
 
-        </Grid>
-
-        <Grid item >
         <TextField 
                 type={ passBlock.repPass ? 'text' : 'password' }
                 fullWidth 
                 size='medium'
-                placeholder={ t('input.password')!  }
-                label={  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'input.password' ) }</Typography> }
+                placeholder={ t('input.repPass')!  }
+                label={  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'input.repPass' ) }</Typography> }
                 sx={[
                   {
                     mb: 2
@@ -163,16 +176,18 @@ export const SecurityView = () => {
                 }}
               
                 />
-        </Grid>
+ 
 
        </Grid>
 
        <Grid container
             justifyContent="center"
             alignItems="center"
-            lg={ 6 } md={6} xs={ 12 }>
+            lg={6} md={6} xs={12}
+            >
           
         <Box
+          className='animate__animated animate__fadeInRight'
           component={'img'} 
           width={ 183 }
           height={ 256 }
@@ -182,14 +197,25 @@ export const SecurityView = () => {
         />
        </Grid>
 
-       <Divider />
+       </Grid>
+
+      
+
+       <Divider sx={{
+        height: 2,
+        width: '100%',
+       }} />
+
+        <AlertDanger />
+
+        <AlertSuccess />
+
         <Button 
               type='submit'
               sx={[
                 btnStyle(),
                 {
-                  mt: 4,
-                  ml: 2,
+                  m: 2,
                   width: {
                     md: 'auto',
                     xs: '100%',

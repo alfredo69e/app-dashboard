@@ -1,10 +1,12 @@
 import { AppRegistration, HouseOutlined } from '@mui/icons-material';
-import { Box, Grid, SwipeableDrawer, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Divider, Grid, SwipeableDrawer, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 import { PaletteTypeEnum, RootState, useAppSelector } from '../../../store';
 import { useAuth } from '../../../hooks';
 import { RouterEnum } from '../../helper';
+import { RolesEnum } from '../../../common';
+import { SideBarDivider } from './SideBarDivider';
 
 interface props {
   drawerWidth: number;
@@ -24,7 +26,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
     onClickSideBar( open );
   };
 
-  const { name, lastName } = useAuth();
+  const { name, lastName, roles } = useAuth();
 
   const theme = useTheme();
   const upMd = useMediaQuery(theme.breakpoints.up('lg'));
@@ -45,7 +47,14 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
     return 'animate__animated animate__fadeIn btnDrawerIsNotActiveDark'
   }
   
-  
+  const validateRoles = (): boolean => {
+    for (const item of roles) {
+      if( item.includes( RolesEnum.super_admin ) ) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   return (
     <Box 
@@ -112,16 +121,49 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
                       > { t('dash.dashboard') } </Typography>
               </NavLink>
             
+              
+
+             {
+               ( validateRoles() ) &&  
+               <>
+               <SideBarDivider title={ t('dash.users') } />
+
+               <NavLink 
+                onClick={( event ) => {
+                  toggleDrawer( false );
+                } }
+                className={ ({ isActive }) => isActiveDrawer( isActive ) }
+                to={`${RouterEnum.registerUser}`}
+                >  
+                  <AppRegistration className='icon' />
+                  <Typography className='span' > { t('dash.registerUsers') } </Typography>
+                </NavLink> 
+
+                <NavLink 
+                onClick={( event ) => {
+                  toggleDrawer( false );
+                } }
+                className={ ({ isActive }) => isActiveDrawer( isActive ) }
+                to={`${RouterEnum.listUsers}`}
+                >  
+                  <AppRegistration className='icon' />
+                  <Typography className='span' > { t('dash.listUsers') } </Typography>
+                </NavLink> 
+              </>
+                
+              }
+
+              <SideBarDivider title={ t('dash.briefcase') } />
 
               <NavLink 
                 onClick={( event ) => {
                   toggleDrawer( false );
                 } }
                 className={ ({ isActive }) => isActiveDrawer( isActive ) }
-                to={`${RouterEnum.profile}`}
+                to={`${ RouterEnum.briefcase }`}
                 >  
                   <AppRegistration className='icon' />
-                  <Typography className='span' > { t('dash.registerInfo') } </Typography>
+                  <Typography className='span' > { t('dash.briefcase') } </Typography>
               </NavLink>
             </Grid>
 

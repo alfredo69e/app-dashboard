@@ -1,6 +1,6 @@
 
 
-import { Button, Grid, TextField, Typography } from '@mui/material';
+import { Button, Divider, Grid, TextField, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { InputDatePicker, InputSelectMulti, InputSelectSingle, RolesEnum } from '../../../common';
@@ -80,7 +80,7 @@ export const InputProfile = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
 
-        <Grid  container spacing={2} p={2} >    
+        <Grid  container spacing={2} p={4} >    
 
             <Grid item lg={6} md={12} xs={12}>
                 <TextField 
@@ -202,23 +202,29 @@ export const InputProfile = () => {
 
             </Grid>
 
+            
+        </Grid>
+
+        <Divider />
+
+        <Grid container p={4}>
             <Button 
-                  type='submit'
-                  sx={[
-                    btnStyle(),
-                    {
-                      mt: 4,
-                      ml: 2,
-                      width: {
+                type='submit'
+                sx={[
+                btnStyle(),
+                {
+                    width: {
                         md: 'auto',
                         xs: '100%',
-                      }
                     }
-                  ]}
+                }
+                ]}
                 >
-                  <Typography sx={{ fontSize: '1.2em' }} >{ t( 'btn.update' ) }</Typography> 
+                <Typography sx={{ fontSize: '1.2em' }} >{ t( 'btn.update' ) }</Typography> 
             </Button>
         </Grid>
+
+        
 
     </form>
   )

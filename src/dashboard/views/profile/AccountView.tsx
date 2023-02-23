@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 import { ChangeAvatar } from './ChangeAvatar';
 import { InputProfile } from './InputProfile';
 
@@ -9,11 +9,9 @@ export const AccountView = () => {
   return (
          
 
-        <Grid container spacing={2} p={4} >
-
+        <Grid container   >
             <ChangeAvatar />
-
-            <InputProfile />
+          <InputProfile />
 
         </Grid>
 
