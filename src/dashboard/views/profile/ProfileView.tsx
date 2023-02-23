@@ -55,8 +55,12 @@ export const ProfileView = () => {
   return (
     <Card
     className={'animate__animated animate__fadeInUp'}
+    
       sx={[
-        cardStyle
+        cardStyle,
+        {
+          m: 2,
+        }
       ]}
       >
        

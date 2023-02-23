@@ -8,18 +8,18 @@ export enum authStatus {
 }
 
 export interface authState {
-    isAutenticated: authStatus;
-    uid:       string;
+    isAutenticated?: authStatus;
+    uid?:       string;
     username:  string;
     email:     string;
     name:      string;
     lastName:  string;
     avatar:    string;
-    birthdate: number;
+    birthdate: string;
     block:     boolean;
     mobile:    string;
     roles:     string[];
-    token:     string;
+    token?:     string;
 }
 
 const initialState: authState = {
@@ -30,7 +30,7 @@ const initialState: authState = {
     name:      '',
     lastName:  '',
     avatar:    '',
-    birthdate: 0,
+    birthdate: '',
     block:     false,
     mobile:    '',
     roles:     [],
@@ -55,6 +55,9 @@ export const authSlice = createSlice({
         state.roles          = payload.roles;
         state.token          = payload.token;
     },
+    setUserAvatar: (state, { payload }: PayloadAction<string>) => {
+        state.avatar = payload;
+    },
     logoutUser: ( state ) => {
         state.isAutenticated = authStatus.noAuthenticated;
         state.uid            = '';
@@ -63,7 +66,7 @@ export const authSlice = createSlice({
         state.name           = '';
         state.lastName       = '';
         state.avatar         = '';
-        state.birthdate      = 0;
+        state.birthdate      = '';
         state.block          = false;
         state.mobile         = '';
         state.roles          = [];
@@ -73,4 +76,4 @@ export const authSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser, logoutUser } = authSlice.actions;
+export const { setUser, logoutUser, setUserAvatar } = authSlice.actions;

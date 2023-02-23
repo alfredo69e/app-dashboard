@@ -22,7 +22,10 @@ export const HeaderCard = ({ title, active, icon, onClik } : props ) => {
        alignItems="center"
         
         sx={( active  ) ? {
-          width: '18rem',
+          width: {
+            md: '18rem',
+            xs: '100%',
+          },
           height: '60px',
           color: 'primary.main',
           borderStyle: 'solid',
@@ -32,7 +35,10 @@ export const HeaderCard = ({ title, active, icon, onClik } : props ) => {
           animation: ' fadeIn 0.5s 1'
         } 
         : {
-          width: '18rem',
+          width: {
+            md: '18rem',
+            xs: '100%',
+          },
           height: '60px',
           color: 'drawer.colorText',
           cursor: 'pointer',

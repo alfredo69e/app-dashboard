@@ -30,6 +30,7 @@ export const NavBar = ({ onOpenDrawer, drawerWidth }: props ) => {
         sx={{ 
             width: { lg: `calc(100% - ${ drawerWidth }px)`, md: `100%` , sm: `100%` },
             mr: { lg: 18, md: 0, sm: 0 },
+            zIndex: 1
         }}>
         <Toolbar
             sx={{

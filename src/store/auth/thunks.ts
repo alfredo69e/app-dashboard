@@ -1,13 +1,12 @@
 import { dashboardApi } from './../../api';
-import { AppDispatch, RootState } from './../stores';
+import { AppDispatch } from './../stores';
 import { activeLoading, desactiveLoading } from './../loading';
-import { logoutUser, setUser } from './authSlice';
+import { authState, logoutUser, setUser, setUserAvatar } from './authSlice';
 import { AxiosError } from 'axios';
-import { resetErrMessage, setErrMessage } from './../errMessages';
+import { resetErrMsg, startErrMsg } from './../errMessages';
 import { localStorageSetToken, localStorageRemoveToken } from './../../helper';
-import { resetMessage } from './../messages';
-import { useNavigate } from 'react-router-dom';
-import { RouterEnum } from './../../dashboard/helper';
+import { resetMsg, startMsg } from './../messages';
+import moment from 'moment';
 
 //! getState: () => RootState
 
@@ -15,8 +14,8 @@ export const startLogin = ( username: string, password: string ) => {
     return async( dispatch: AppDispatch,   ) => {
 
          dispatch( activeLoading() );
-         dispatch( resetErrMessage() );
-         dispatch( resetMessage() );
+         dispatch( resetErrMsg() );
+         dispatch( resetMsg() );
 
         try {
 
@@ -26,21 +25,19 @@ export const startLogin = ( username: string, password: string ) => {
         
             dispatch( setUser( data ) );
             
-            dispatch( desactiveLoading() );
-
 
         } catch ( error : any ) {
-
-            dispatch( desactiveLoading() );
 
             const err : AxiosError = error;
 
             const { status, name, message }: any = err.response?.data;
 
-            dispatch( setErrMessage( { status: status ?? 0, name, message } ) );
+            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
 
             dispatch( startLogout() );
             
+        } finally {
+            dispatch( desactiveLoading() );
         }
     }
 }
@@ -68,15 +65,122 @@ export const startRefreshToken = () => {
                 localStorageSetToken( data.token );
             
                 dispatch( setUser( data ) );
-                dispatch( desactiveLoading() );
+               
 
             } catch ( error : any ) {
 
                 dispatch( startLogout() );
 
+               
+            } finally {
                 dispatch( desactiveLoading() );
             }
 
         // }, 3000 );
+    }
+}
+
+export const startChangeAvatar = ( files: FileList ) => {
+    return async( dispatch: AppDispatch ) => {
+        
+        dispatch( activeLoading() );
+        dispatch( resetErrMsg() );
+        dispatch( resetMsg() );
+        
+        try {
+
+            const formData = new FormData();
+
+            formData.append('avatar', files[0]);
+
+            const { data } = await dashboardApi.patch(`/users/updatePhoto`, formData );
+
+            dispatch( setUserAvatar( data.avatar ) );
+
+            dispatch( startMsg( '' ) );
+            
+        } catch ( error : any ) {
+
+            console.log( error );
+
+            const err : AxiosError = error;
+
+            const { status, name, message }: any = err.response?.data;
+
+            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            
+            
+        } finally {
+            dispatch( desactiveLoading() );
+        }
+
+
+
+    }
+}
+
+export const startResetAvatar = () => {
+    return async( dispatch: AppDispatch ) => {
+        dispatch( activeLoading() );
+        dispatch( resetErrMsg() );
+        dispatch( resetMsg() );
+
+        try {
+
+            const { data } = await dashboardApi.patch(`/users/updatePhoto`);
+
+            dispatch( setUserAvatar( data.avatar ) );
+
+            dispatch( startMsg( '' ) );
+   
+        } catch ( error: any ) {
+
+            console.log( error );
+
+            const err : AxiosError = error;
+
+            const { status, name, message }: any = err.response?.data;
+
+            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            
+            
+        } finally {
+            dispatch( desactiveLoading() );
+        }
+    }
+}
+
+export const startUpdateUser = ( user: authState ) => {
+    return async( dispatch: AppDispatch ) => {
+        dispatch( activeLoading() );
+        dispatch( resetErrMsg() );
+        dispatch( resetMsg() );
+
+        try {
+
+            // user.birthdate = moment(user.birthdate, 'MM/DD/YYYY').format('MM/DD/YYYY');
+
+            const { data } = await dashboardApi.patch(`/users/update`, { ...user });
+
+            dispatch( startMsg( '' ) );
+
+            dispatch( setUser( data ) );
+
+            
+   
+        } catch ( error: any ) {
+
+            console.log( error );
+
+            const err : AxiosError = error;
+
+            const { status, name, message }: any = err.response?.data;
+
+            dispatch( startErrMsg( { status: status ?? 0, name, message } ) );
+            
+            
+        } finally {
+            dispatch( desactiveLoading() );
+        }
     }
 }

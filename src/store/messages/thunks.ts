@@ -1,9 +1,22 @@
+
 import { AppDispatch } from '../stores';
-import { setMessage } from './messagesSlices';
+import { resetMessage, setMessage } from './messagesSlices';
 
 
-export const startMessage = ( message: string ) => {
+export const startMsg = ( message: string ) => {
     return async( dispatch: AppDispatch ) => {
+        
         dispatch( setMessage( message )  );
+
+        setTimeout(() => {
+            dispatch( resetMsg()  );
+        }, 5000);
     }  
 }
+
+export const resetMsg = ( ) => {
+    return async( dispatch: AppDispatch ) => {
+        dispatch( resetMessage()  );
+    }  
+}
+

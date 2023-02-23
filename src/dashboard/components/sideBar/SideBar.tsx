@@ -50,7 +50,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
   return (
     <Box 
         component='nav' 
-        sx={{ width: { lg: drawerWidth, md: `calc(100% - ${drawerWidth})px`, sm: `calc(100% - ${drawerWidth})px` }, flexShrink: { md: 0, sm: 0 } }}
+        sx={{ zIndex: 1, width: { lg: drawerWidth, md: `calc(100% - ${drawerWidth})px`, sm: `calc(100% - ${drawerWidth})px` }, flexShrink: { md: 0, sm: 0 } }}
         >
         <SwipeableDrawer
         hysteresis={ 0 }

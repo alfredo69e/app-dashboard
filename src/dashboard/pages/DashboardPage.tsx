@@ -1,4 +1,3 @@
-import { useAuth } from './../../hooks';
 import { DashboardLayout } from './../layout/DashboardLayout';
 import { DashboardView } from './../views';
 

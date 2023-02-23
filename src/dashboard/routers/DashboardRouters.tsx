@@ -1,9 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { RouterEnum } from '../helper';
 import { ErrorPage } from './../../err';
 import { DashboardPage, ProfilePage } from './../pages';
 
 export const DashboardRouters = () => {
+
+
 
   return (
     <Routes>

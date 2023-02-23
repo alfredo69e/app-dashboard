@@ -2,12 +2,12 @@
     "btn": {
         "login": "Iniciar sesión",
         "save": "Guardar",
-        "no": "no",
-        "yes": "si",
-        "load": "cargar",
-        "cancel": "cancelar",
-        "back": "volver",
-        "update": "actualizar",
+        "no": "No",
+        "yes": "Si",
+        "load": "Cargar",
+        "cancel": "Cancelar",
+        "back": "Volver",
+        "update": "Actualizar",
         "send": "Enviar",
         "profile": "Perfil",
         "logout": "Cerrar Session",
@@ -27,12 +27,17 @@
         "status": "Estado",
         "inactive": "Inactivo",
         "pending": "Pendiente",
-        "block": "Bloqueado"
+        "block": "Bloqueado",
+        "roles": "Roles",
+        "mobile": "Celular",
+        "birthdate": "Fecha de Nacimiento"
     },
 
     "alert": {
         "inputRequired": "Este campo es Requerido",
-        "userOrPass": "Usuario o Contraseña incorrectos"
+        "userOrPass": "Usuario o Contraseña incorrectos",
+        "noUpdate": "Ocurrió un problema al actualizar los datos, por favor verificar la informacion",
+        "updateSuccess": "Datos Actualizados Correctamente"
     },
 
     "login": {

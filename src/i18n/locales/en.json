@@ -1,13 +1,13 @@
 {
     "btn": {
-        "login": "login",
-        "save": "save",
-        "no": "no",
-        "yes": "yes",
-        "load": "load",
-        "cancel": "cancel",
-        "back": "back",
-        "update": "update",
+        "login": "Login",
+        "save": "Save",
+        "no": "No",
+        "yes": "Yes",
+        "load": "Load",
+        "cancel": "Cancel",
+        "back": "Back",
+        "update": "Update",
         "send": "Send",
         "profile": "Profile",
         "logout": "Logout",
@@ -27,12 +27,18 @@
         "status": "Status",
         "inactive": "Inactive",
         "pending": "Pendig",
-        "block": "Block"
+        "block": "Block",
+        "roles": "Roles",
+        "mobile": "mobile",
+        "birthdate": "birthdate"
+        
     },
 
     "alert": {
         "inputRequired": "This field is required",
-        "userOrPass": "Wrong username or password"
+        "userOrPass": "Wrong username or password",
+        "noUpdate": "There was a problem updating the data, please verify the information",
+        "updateSuccess": "Data Updated Correctly"
     },
 
     "login": {
