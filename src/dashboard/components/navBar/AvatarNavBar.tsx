@@ -49,19 +49,19 @@ export const AvatarNavBar = ({ avatar, name, roles } : props) => {
         
     }
 
-    const divider = () => {
-        return <Divider
-        sx={{
-            backgroundColor: 'primary.gray',
-            // height: 2,
-        }} />
-    }
+    const divider = () => <Divider
+    sx={{
+        backgroundColor: 'primary.gray',
+        // height: 2,
+    }} />
+
+    //animate__animated animate__bounceIn
 
   return (
     <>
         <Badge 
             onClick={ handleClickAvatar }
-            className={ 'animate__animated animate__bounceIn' }
+            className={ '' }
             
             overlap='circular'
             badgeContent='' 
