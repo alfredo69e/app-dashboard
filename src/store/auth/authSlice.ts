@@ -9,7 +9,7 @@ export enum authStatus {
 
 export interface authState {
     isAutenticated?: authStatus;
-    uid?:       string;
+    uid:       string;
     username:  string;
     email:     string;
     name:      string;
@@ -19,7 +19,7 @@ export interface authState {
     block:     boolean;
     mobile:    string;
     roles:     string[];
-    token?:     string;
+    token:     string;
 }
 
 const initialState: authState = {

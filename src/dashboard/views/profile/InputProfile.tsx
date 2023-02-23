@@ -7,7 +7,6 @@ import { InputDatePicker, InputSelectMulti, InputSelectSingle, RolesEnum } from 
 import { useAuth } from './../../../hooks';
 import { btnStyle, inputStyle } from './../../../styles';
 import { useState } from 'react';
-import moment from 'moment';
 import { authState, startUpdateUser, useAppDispatch } from './../../../store';
 
 
@@ -34,37 +33,39 @@ export const InputProfile = () => {
 
     const { isAutenticated, ...rest } = useAuth();
 
-    const [ user, setUser ] = useState({...rest})
+    const [ user, setUser ] = useState( rest )
 
-    const { register, handleSubmit, formState: { errors } } = useForm<inputs>({ defaultValues: { ...rest } });   
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<inputs>({ defaultValues: { ...rest } });   
 
     const onSubmit: SubmitHandler<inputs> = ( data ) => {
-        //TODO: Falta hacer la comunicacion para solicitar el cambio de pass;
-       
         const userUpdate : authState = {
             ...data
         };
 
         dispatch( startUpdateUser( userUpdate ) );
 
-        setUser( {...data} );
+        setUser({...data});
 
         
     };
 
     const onChangeBlock = ( value: string ) => {
         user.block =  value.includes('true');
-        setUser({ ...user });
+        setValue('block', user.block );
+        setUser(user);
       }
   
     const onChangeRoles = ( values: string[] ) => {
         user.roles = [...values];
-        setUser({...user});
+        setValue('roles', user.roles );
+        setUser(user);
+        console.log(' user ', {...user});
     }
 
     const onChangeBirthdate = ( value: string ) => {
         user.birthdate = value;
-        setUser({...user});
+        setValue('birthdate', user.birthdate );
+        setUser(user);
     }
 
     const disabledSuper = (): boolean => {
@@ -88,7 +89,6 @@ export const InputProfile = () => {
                     fullWidth
                     placeholder={ t('input.name')! }
                     label={ <Typography sx={{ fontSize: '1.2em' }} >{ t('input.name') }</Typography> }
-                    defaultValue={ rest.name }
                     sx={[
                         inputStyle
                     ]} 
@@ -105,7 +105,6 @@ export const InputProfile = () => {
                     fullWidth
                     placeholder={ t('input.lastName')! }
                     label={ <Typography sx={{ fontSize: '1.2em' }} >{ t('input.lastName') }</Typography> }
-                    defaultValue={ rest.lastName }
                     sx={[
                         inputStyle
                     ]} 
@@ -124,7 +123,6 @@ export const InputProfile = () => {
                     fullWidth
                     placeholder={ t('input.username')! }
                     label={ <Typography sx={{ fontSize: '1.2em' }} >{ t('input.username') }</Typography> }
-                    defaultValue={ rest.username }
                     sx={[
                         inputStyle
                     ]} 
@@ -194,7 +192,6 @@ export const InputProfile = () => {
                     fullWidth
                     placeholder={ t('input.mobile')! }
                     label={ <Typography sx={{ fontSize: '1.2em' }} >{ t('input.mobile') }</Typography> }
-                    defaultValue={ rest.mobile }
                     sx={[
                         inputStyle
                     ]} 

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { inputStyle } from './../../styles';
 
 type props = {
-    dates?: number | string;
+    dates?: string;
     label: string;
     disableFuture?: boolean;
     disablePast?: boolean;
