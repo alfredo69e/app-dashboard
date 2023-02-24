@@ -7,6 +7,7 @@ import { useAuth } from '../../../hooks';
 import { RouterEnum } from '../../helper';
 import { RolesEnum } from '../../../common';
 import { SideBarDivider } from './SideBarDivider';
+import { upperCaseFirstLetter } from '../../../helper';
 
 interface props {
   drawerWidth: number;
@@ -96,7 +97,7 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
                     fontSize: '1.5em',
                   }}
                 >
-                  👨🏻‍💻 { `${name.substring(0,1).toLocaleUpperCase()}${name.substring(1,name.length)} ${lastName.substring(0,1).toLocaleUpperCase()}${lastName.substring(1,lastName.length)}` }
+                  👨🏻‍💻 { `${upperCaseFirstLetter( name )} ${upperCaseFirstLetter( lastName )}` }
                 </Typography>
                 </Link>
 
@@ -106,7 +107,6 @@ export const SideBar = ({onClickSideBar, onOpenSideBar, drawerWidth = 250 }: pro
             >
 
               <NavLink
-                
                 onClick={( event ) => {
                   toggleDrawer( false );
                 }  }

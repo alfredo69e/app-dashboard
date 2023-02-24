@@ -11,9 +11,6 @@ import './../style/errScss.scss';
 export const ErrorPage = () => {
 
     const { t } = useTranslation();
-
-    // ** Hook
-    const theme = useTheme()
     
 
   return (

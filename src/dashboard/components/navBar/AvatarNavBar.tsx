@@ -22,6 +22,7 @@ export const AvatarNavBar = ({ avatar, name, roles } : props) => {
     const dispatch = useAppDispatch();
 
     const naviagate = useNavigate();
+    
 
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -45,7 +46,7 @@ export const AvatarNavBar = ({ avatar, name, roles } : props) => {
        
         setTimeout(() => {
             naviagate( link, { relative: 'path' } );
-        }, 300);
+        }, 50);
         
     }
 

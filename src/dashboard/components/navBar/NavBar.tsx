@@ -3,8 +3,10 @@
 import { DarkModeOutlined, LightModeOutlined, MenuOutlined } from '@mui/icons-material';
 import { AppBar, Grid, IconButton, Toolbar } from '@mui/material';
 import { useAuth, useTheme } from './../../../hooks';
-import { PaletteTypeEnum, RootState, useAppDispatch, useAppSelector, startThemeLoad } from './../../../store';
+import { PaletteTypeEnum, useAppDispatch, startThemeLoad } from './../../../store';
 import { AvatarNavBar } from './AvatarNavBar';
+import { useState, useEffect } from 'react';
+import { upperCaseFirstLetter } from './../../../helper';
 
 interface props {
     drawerWidth: number;
@@ -17,11 +19,24 @@ export const NavBar = ({ onOpenDrawer, drawerWidth }: props ) => {
 
     const dispatch = useAppDispatch();
 
+    const [animation, setAnimation] = useState(true);
+
+    useEffect(() => {
+        console.log( 'useEffect' );
+        
+      setTimeout(() => {
+        setAnimation( false );
+      }, 200);
+    }, []);
+    
+
     const { avatar, name, lastName, roles } = useAuth();
 
-    const fullName = `${name.substring(0,1).toLocaleUpperCase()}${name.substring(1,name.length)} ${lastName.substring(0,1).toLocaleUpperCase()}${lastName.substring(1,lastName.length)}`;
+    const fullName = `${upperCaseFirstLetter( name )} ${upperCaseFirstLetter( lastName )}`;
 
-    const handleChangeTheme = () => dispatch( startThemeLoad( theme === PaletteTypeEnum.dark ? PaletteTypeEnum.light : PaletteTypeEnum.dark ) );
+    const handleChangeTheme = () => {
+        dispatch( startThemeLoad( theme.includes( PaletteTypeEnum.dark ) ? PaletteTypeEnum.light : PaletteTypeEnum.dark ) );
+    };
 
   return (
     <AppBar 
@@ -62,9 +77,9 @@ export const NavBar = ({ onOpenDrawer, drawerWidth }: props ) => {
                     }}
                 >
                     {
-                        ( theme === PaletteTypeEnum.dark )
-                        ? <LightModeOutlined fontSize='inherit' />
-                        : <DarkModeOutlined fontSize='inherit' />
+                        ( theme.includes( PaletteTypeEnum.dark )  )
+                        ? <LightModeOutlined fontSize='large' className={ animation ? 'animate__animated animate__rubberBand' : ''} />
+                        : <DarkModeOutlined fontSize='large' className={ animation ? 'animate__animated animate__jello' : ''}/>
                     }
                    
                 </IconButton>
