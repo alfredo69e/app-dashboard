@@ -1,12 +1,10 @@
 
 
-import { Box, Card, Grid, } from '@mui/material';
+import { Card, Grid, } from '@mui/material';
 import { RootState, useAppSelector } from './../../store';
 import { Loading } from './../../components';
 import { FooterComponent, ForgotPassComponent, LoginComponent } from './../components';
 import { loginStatus, useSelectCard } from '../hooks';
-import { animationsFlipLeftStyle, animationsFlipRightStyle, animationsOpacitytStyle } from '../../styles';
-import { useEffect, useMemo, useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 
 

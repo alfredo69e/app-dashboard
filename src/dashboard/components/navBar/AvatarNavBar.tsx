@@ -22,6 +22,7 @@ export const AvatarNavBar = ({ avatar, name, roles } : props) => {
     const dispatch = useAppDispatch();
 
     const naviagate = useNavigate();
+    
 
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -45,23 +46,23 @@ export const AvatarNavBar = ({ avatar, name, roles } : props) => {
        
         setTimeout(() => {
             naviagate( link, { relative: 'path' } );
-        }, 300);
+        }, 50);
         
     }
 
-    const divider = () => {
-        return <Divider
-        sx={{
-            backgroundColor: 'primary.gray',
-            // height: 2,
-        }} />
-    }
+    const divider = () => <Divider
+    sx={{
+        backgroundColor: 'primary.gray',
+        // height: 2,
+    }} />
+
+    //animate__animated animate__bounceIn
 
   return (
     <>
         <Badge 
             onClick={ handleClickAvatar }
-            className={ 'animate__animated animate__bounceIn' }
+            className={ '' }
             
             overlap='circular'
             badgeContent='' 

@@ -14,7 +14,7 @@ export const AppTheme = ({ children }: any) => {
   const { theme } = useTheme();
 
   // Update the theme only if the mode changes
-  const customTheme = useMemo(() => createTheme( getDesignTokens(theme) ), [ theme ]);
+  const customTheme = useMemo(() => createTheme( getDesignTokens(theme) ), [ theme ] );
   
 
   return (

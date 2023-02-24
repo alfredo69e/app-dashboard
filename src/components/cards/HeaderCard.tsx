@@ -1,6 +1,6 @@
 
 
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid, Button, Divider } from '@mui/material';
 import { SvgIconProps } from '@mui/material';
 
 type props = {
@@ -14,34 +14,30 @@ export const HeaderCard = ({ title, active, icon, onClik } : props ) => {
 
   return (
     
-    <Grid
+    <Button
       onClick={ onClik }
-      container
-      direction="row"
-      justifyContent="center"
-       alignItems="center"
-        
         sx={( active  ) ? {
-          width: '18rem',
+          width: '18vw',
           height: '60px',
           color: 'primary.main',
-          borderStyle: 'solid',
-          borderWidth: '0px 0px 4px 0px', 
-          borderColor: 'primary.main',
+          borderRadius: 0,
           cursor: 'pointer',
-          animation: ' fadeIn 0.5s 1'
+          borderStyle: 'solid',
+          borderBottomWidth: '4px', 
+          borderBottomColor: 'primary.main'
         } 
         : {
-          width: '18rem',
+          width: '18vw',
           height: '60px',
           color: 'drawer.colorText',
+          borderRadius: 0,
           cursor: 'pointer',
+          borderStyle: 'solid',
+          borderBottomColor: 'primary.main',
+          transition: '0.1s all',
           '&:hover': {
-            color: 'primary.main',
-            borderStyle: 'solid',
-            borderWidth: '0px 0px 4px 0px', 
-            borderColor: 'primary.main',
-          },
+            borderBottomWidth: '4px',
+          }
         }} >
           <>
           { icon }
@@ -51,17 +47,19 @@ export const HeaderCard = ({ title, active, icon, onClik } : props ) => {
               fontSize: '1.2em',
               fontWeight: 'bold',
               ml: 1,
+              display: { md: 'block', xs: 'none' }
             }
             : {
 
               fontSize: '1.2em',
               ml: 1,
+              display: { md: 'block', xs: 'none' }
 
             }} > { title } 
             </Typography>
-             </>
+            </>
          
-    </Grid>
+    </Button>
     
   )
 }

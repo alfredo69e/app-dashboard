@@ -1,7 +1,5 @@
 import { Box, Grid } from "@mui/material"
 
-
-
 export const Loading = () => {
 
     return (

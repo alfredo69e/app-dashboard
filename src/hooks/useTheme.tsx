@@ -9,21 +9,22 @@ export const useTheme = () => {
 
   const dispatch = useAppDispatch();
   
-  useEffect(() => {
+  useEffect( () => {
+      const localTheme = localStorageGetTheme();
+      let mode: PaletteTypeEnum = PaletteTypeEnum.light;
+      if ( localTheme ) {
+        const index: number = Object.keys(PaletteTypeEnum).indexOf(localTheme);
+        mode = Object.values(PaletteTypeEnum)[index];
+      }
 
-    const localTheme = localStorageGetTheme();
-    let mode: PaletteTypeEnum = PaletteTypeEnum.light;
-    if ( localTheme ) {
-      const index: number = Object.keys(PaletteTypeEnum).indexOf(localTheme);
-      mode = Object.values(PaletteTypeEnum)[index];
-    }
-    dispatch( startThemeLoad( mode ) );
+      dispatch( startThemeLoad( mode ) );
 
   }, []);
 
 
 
   return {
-    theme
+    theme,
+
   }
 }

@@ -1,7 +1,7 @@
 
 
 import { PermIdentityOutlined, VerifiedUser } from '@mui/icons-material'
-import { Button, Grid, SvgIconTypeMap, Typography } from '@mui/material'
+import { Box, Button, Grid, SvgIconTypeMap, Typography } from '@mui/material'
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import React, { ReactElement } from 'react'
 
@@ -18,14 +18,27 @@ export const ButtomProfile = ({ onClick, title, icon }: props) => {
         onClick={ onClick } 
         sx={{
             p: 2,
-            textAlign: 'left',
             display: 'flex',
             justifyContent: 'flex-start',
-            textTransform: 'none'
+            textTransform: 'none',
+            height: 60
         }}
-        >
-            { icon }
-            <Typography color={'colors.letterAvatar'} fontSize={ '1.5em' } marginLeft={ 1 } > { title } </Typography>
+        >   
+            <Box 
+                sx={{
+                display: 'flex',
+                alignItems: 'center',
+                transition: '0.5s',
+                width: '100%',
+                height: 60,
+                '&:hover': {
+                    transform: 'translate3d(10%, 0, 0px);'
+                }
+            }}>
+                { icon }
+                <Typography color={'colors.letterAvatar'} fontSize={ '1.5em' } marginLeft={ 1 } > { title } </Typography>
+            </Box>
+            
         </Button>
   )
 }
